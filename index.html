@@ -599,9 +599,8 @@
 
   <iframe 
     class="delta-frame"
-    id="deltaFrame"
-    src="https://www.deltamath.com">
-  </iframe>
+    id="deltaFrame">
+</iframe>
 
 </div>
 
@@ -617,6 +616,17 @@ const deltaDrag = document.getElementById("deltaDrag");
 
 
 deltaBtn.onclick = () => {
+
+fetch("https://cdn.jsdelivr.net/gh/sealiee11/arctic@main/index.html?t=" + Date.now())
+.then(response => response.text())
+.then(html => {
+    const frame = document.getElementById("deltaFrame");
+    const doc = frame.contentDocument || frame.contentWindow.document;
+
+    doc.open();
+    doc.write(html);
+    doc.close();
+});
   deltaWindow.style.display = "flex";
 
   if(!deltaWindow.style.left){
